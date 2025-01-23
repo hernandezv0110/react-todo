@@ -1,14 +1,20 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useRef } from "react";
 
-function InputWithLabel(props) {
+function InputWithLabel({ todoTitle, handleTitleChange, children }) {
+  const inputRef = useRef();
+  useEffect(() => {
+    inputRef.current.focus();
+  });
+
   return (
     <Fragment>
-      <label htmlFor="todoTitle">{props.label}</label>
+      <label htmlFor="todoTitle">{children}</label>
       <input
         name="title"
         id="todoTitle"
-        value={props.todoTitle}
-        onChange={props.handleTitleChange}
+        value={todoTitle}
+        ref={inputRef}
+        onChange={handleTitleChange}
       />
     </Fragment>
   );
