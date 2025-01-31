@@ -1,6 +1,6 @@
 function TodoListItem({ id, todo, onRemoveTodo }) {
   return (
-    <li key={id}>
+    <li>
       {todo.title}
       <button type="button" onClick={() => onRemoveTodo(id)}>
         Remove
