@@ -1,8 +1,14 @@
+import styles from "./TodoListItem.module.css";
+
 function TodoListItem({ id, todo, onRemoveTodo }) {
   return (
-    <li>
+    <li className={styles.ListItem}>
       {todo.title}
-      <button type="button" onClick={() => onRemoveTodo(id)}>
+      <button
+        className={styles.ListButton}
+        type="button"
+        onClick={() => onRemoveTodo(id)}
+      >
         Remove
       </button>
     </li>
