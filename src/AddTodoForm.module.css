@@ -1,0 +1,38 @@
+.InputForm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+.FormButton{
+    background-color: black;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.FormButton:hover{
+    background-color: green;
+    color: white;
+}
+
+@media(max-width:768px){
+    .InputForm {
+        font-size: 1.2rem;
+    }
+
+    .FormButton{
+        font-size: 1rem;
+    }
+}
+
+@media(max-width: 480px){
+    .InputForm {
+        font-size: 1rem;
+    }
+
+    .FormButton{
+        font-size: 0.8rem;
+    }
+}

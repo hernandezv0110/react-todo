@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useRef } from "react";
+import styles from "./InputWithLabel.module.css";
 
 function InputWithLabel({ todoTitle, handleTitleChange, children }) {
   const inputRef = useRef();
@@ -15,6 +16,7 @@ function InputWithLabel({ todoTitle, handleTitleChange, children }) {
         value={todoTitle}
         ref={inputRef}
         onChange={handleTitleChange}
+        className={styles.InputBar}
       />
     </Fragment>
   );

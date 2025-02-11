@@ -1,0 +1,43 @@
+.ListItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid white;
+    font-size: 1.5rem;
+}
+
+.ListButton {
+    background-color: black;
+    color: white;
+    border: 2px solid black;
+    font-size: 1.2rem;
+}
+
+.ListButton:hover {
+    background-color: red;
+    color: white;
+}
+
+@media (max-width: 768px){
+    .ListItem {
+        font-size: 1.2rem;
+        padding: 8px;
+    }
+
+    .ListButton {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px){
+    .ListItem {
+        font-size: 1rem;
+        padding: 6px;
+    }
+
+    .ListButton {
+        font-size: 0.8rem;
+    }
+}
