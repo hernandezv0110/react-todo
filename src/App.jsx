@@ -1,7 +1,7 @@
 import { useState, useEffect, Fragment } from "react";
 import "./App.css";
-import TodoList from "./TodoList";
-import AddToDoForm from "./AddTodoForm";
+import TodoList from "./components/TodoList";
+import AddToDoForm from "./components/AddTodoForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -57,7 +57,7 @@ function App() {
   };
 
   const removeTodo = (id) => {
-    const newList = todoList.filter((todo) => todo.id !== id);
+    const newList = todoList.filter((todo) => todo.id !== String(id));
     setTodoList(newList);
     console.log(newList);
   };
