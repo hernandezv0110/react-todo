@@ -1,4 +1,5 @@
 import styles from "./TodoListItem.module.css";
+import PropTypes from "prop-types";
 
 function TodoListItem({ id, todo, onRemoveTodo }) {
   return (
@@ -14,5 +15,11 @@ function TodoListItem({ id, todo, onRemoveTodo }) {
     </li>
   );
 }
+
+TodoListItem.propTypes = {
+  id: PropTypes.string,
+  todo: PropTypes.object,
+  onRemoveTodo: PropTypes.func,
+};
 
 export default TodoListItem;
