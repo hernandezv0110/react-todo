@@ -16,7 +16,7 @@ function AddToDoForm({ onAddTodo }) {
     event.preventDefault();
     const newTodo = {
       title: todoTitle,
-      id: Date.now(),
+      id: "",
     };
     onAddTodo(newTodo);
     setTodoTitle("");
@@ -27,7 +27,7 @@ function AddToDoForm({ onAddTodo }) {
         todoTitle={todoTitle}
         handleTitleChange={handleTitleChange}
       >
-        Title
+        Title:
       </InputWithLabel>
       <button className={styles.FormButton}>Add</button>
     </form>

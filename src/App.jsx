@@ -29,6 +29,8 @@ function App() {
       }
       const data = await response.json();
 
+      console.log(data);
+
       data.records.sort((objectA, objectB) => {
         const titleA = objectA.fields.title;
         const titleB = objectB.fields.title;
@@ -58,20 +60,71 @@ function App() {
     }, 2000);
   }, []);
 
-  useEffect(() => {
-    if (!isLoading) {
-      localStorage.setItem("savedTodoList", JSON.stringify(todoList));
-    }
-  }, [todoList]);
+  const addTodo = async (newTodo) => {
+    const url = `https://api.airtable.com/v0/${
+      import.meta.env.VITE_AIRTABLE_BASE_ID
+    }/${import.meta.env.VITE_TABLE_NAME}`;
 
-  const addTodo = (newTodo) => {
-    setTodoList([...todoList, newTodo]);
+    const options = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        records: [
+          {
+            fields: {
+              title: newTodo.title,
+            },
+          },
+        ],
+      }),
+    };
+
+    try {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        const message = `Error: ${response.status}`;
+        throw new Error(message);
+      }
+      const data = await response.json();
+      const newTodoItem = {
+        id: data.records[0].id,
+        title: data.records[0].fields.title,
+      };
+      setTodoList((todoList) => [...todoList, newTodoItem]);
+    } catch (error) {
+      console.log("Failed to add todo:", error.message);
+    }
   };
 
-  const removeTodo = (id) => {
-    const newList = todoList.filter((todo) => todo.id !== String(id));
-    setTodoList(newList);
-    console.log(newList);
+  const removeTodo = async (id) => {
+    const url = `https://api.airtable.com/v0/${
+      import.meta.env.VITE_AIRTABLE_BASE_ID
+    }/${import.meta.env.VITE_TABLE_NAME}/${id}`;
+
+    const options = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const response = await fetch(url, options);
+      if (!response.ok) throw new Error(`Error: ${response.status}`);
+
+      const data = await response.json();
+      if (data.deleted) {
+        setTodoList((todoList) =>
+          todoList.filter((todo) => todo.id !== String(id))
+        );
+      }
+    } catch (error) {
+      console.log("Failed to delete todo:", error.message);
+    }
   };
 
   return (
