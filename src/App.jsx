@@ -36,8 +36,8 @@ function App() {
         const titleA = objectA.fields.title;
         const titleB = objectB.fields.title;
 
-        if (titleA < titleB) return 1;
-        if (titleA > titleB) return -1;
+        if (titleA < titleB) return -1;
+        if (titleA > titleB) return 1;
         return 0;
       });
 
