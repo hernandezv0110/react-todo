@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 function TodoListItem({ id, todo, onRemoveTodo }) {
   return (
     <li className={styles.ListItem}>
+      <input type="checkbox" className={styles.Checkbox} />
       {todo.title}
       <button
         className={styles.ListButton}
